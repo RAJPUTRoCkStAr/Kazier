@@ -139,5 +139,3 @@ cv2.destroyAllWindows()
 ## Contributing
 - Contributions are welcome! Please open an issue or submit a pull request.
 
-## Contact
-- Replace `sumitsingh9441@gmail.com` with your actual email address. This `README.md` file now reflects the package name `kaizer` and includes usage examples for its features.
