@@ -119,19 +119,47 @@ while True:
 from KAZIER import Helper
 import cv2
 
+# Initialize the Helper class
 utils = Helper()
-image_url = 'https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg'  # Replace with the actual image URL
+
+# Download the image from URL
+image_url = 'https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg'
 image = utils.download_image_from_url(image_url)
+
+# Make the background black
 black_background_image = utils.make_background_black(image)
+cv2.imshow('Black Background Image', black_background_image)
+
+# Rotate the image by 45 degrees
 rotated_image = utils.rotate_image(image, 45)
-img2 = cv2.imread('med/ig.jpg')  
+cv2.imshow('Rotated Image', rotated_image)
+
+# Read another image from local filesystem
+img2 = cv2.imread('med/ig.jpg')
+
+# Stack images horizontally and vertically
 hstacked_image = utils.hstack_images(image, img2)
+cv2.imshow('Horizontally Stacked Image', hstacked_image)
+
 vstacked_image = utils.vstack_images(image, img2)
+cv2.imshow('Vertically Stacked Image', vstacked_image)
+
+# Detect the color green in the image
 detected_color = utils.detect_color(image, 'green')
+cv2.imshow('Detected Color Image', detected_color)
+
+# Detect corners in the image
 image_with_corners = utils.detect_corners(image)
+cv2.imshow('Image with Corners', image_with_corners)
+
+# Add text to the image
 image_with_text_left = utils.add_text(image, 'Hello World', (50, 50), font_name='hershey_triplex', color_name='blue', align='left')
+cv2.imshow('Image with Text', image_with_text_left)
+
+# Wait for a key press and then close all OpenCV windows
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
 ```
 ## License
 - This project is licensed under the MIT License. See the LICENSE file for details.
