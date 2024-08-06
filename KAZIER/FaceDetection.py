@@ -106,18 +106,6 @@ class FaceDetector:
                                     cv2.putText(img, str(point), (coord[0], coord[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 255, 255), 1)
         return img, faces
     def findDistance(self,p1, p2, img=None):
-        """
-        Find the distance between two landmarks based on their
-        index numbers.
-        :param p1: Point1
-        :param p2: Point2
-        :param img: Image to draw on.
-        :param draw: Flag to draw the output on the image.
-        :return: Distance between the points
-                 Image with output drawn
-                 Line information
-        """
-
         x1, y1 = p1
         x2, y2 = p2
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
@@ -134,7 +122,6 @@ class FaceDetector:
 
 def main():
     cap = cv2.VideoCapture(0)
-    pTime = 0
     detector = FaceDetector()
 
     while True:
@@ -160,12 +147,6 @@ def main():
             p2 = faces[0][263] # Example: right eye landmark
             length, info, img = detector.findDistance(p1, p2, img)
             print(f"Distance between points: {length}, Info: {info}")
-
-        # Calculate and display FPS
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
-        cv2.putText(img, f'FPS: {int(fps)}', (10, 70), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 0), 3)
 
         # Display the resulting frame
         cv2.imshow('Image', img)

@@ -99,7 +99,6 @@ class HandStar:
         return length, img, [x1, y1, x2, y2, cx, cy]
 
 def main():
-    pTime = 0
     cap = cv2.VideoCapture(0)
     detector = HandStar(maxHands=2)
     while True:
@@ -112,10 +111,6 @@ def main():
             fingersList = detector.get_fingers_status()
             for i, fingers in enumerate(fingersList):
                 length, img, lineInfo = detector.calculate_distance(4, 8, img, handNo=i)
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
-        cv2.putText(img, str(int(fps)), (10, 100), cv2.FONT_HERSHEY_COMPLEX, 3, (255, 0, 0), 3)
         cv2.imshow('Image', img)
         if cv2.waitKey(1) == ord('q'):
             break

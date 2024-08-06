@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import requests
 
-class Utils:
+class Helper:
     def __init__(self):
         self.color_dict = {
             'red': (0, 0, 255),
@@ -146,12 +146,12 @@ class Utils:
 
 # Usage
 def main():
-    utils = Utils()
+    utils = Helper()
     image_url = 'https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg'  # Replace with the actual image URL
     image = utils.download_image_from_url(image_url)
     black_background_image = utils.make_background_black(image)
     rotated_image = utils.rotate_image(image, 45)
-    img2 = cv2.imread('med/ig.jpg')  # Load another image for stacking
+    img2 = cv2.imread('med/ig.jpg')  
     hstacked_image = utils.hstack_images(image, img2)
     vstacked_image = utils.vstack_images(image, img2)
     detected_color = utils.detect_color(image, 'green')
